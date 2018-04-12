@@ -58,9 +58,6 @@ From: ubuntu:16.04
     gdebi --n rstudio-server-1.1.442-amd64.deb
     rm rstudio-server-1.1.442-amd64.deb
 
-    # setup rstudio-server
-
-
 %test
     rstudio-server verify-installation
 
