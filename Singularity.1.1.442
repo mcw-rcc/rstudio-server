@@ -2,7 +2,7 @@ BootStrap: docker
 From: ubuntu:16.04
 
 %help
-    This container runs RStudio.
+    This container runs RStudio-Server.
 
 %labels
     Maintainer Matthew Flister
