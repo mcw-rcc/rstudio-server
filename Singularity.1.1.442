@@ -1,0 +1,66 @@
+BootStrap: docker
+From: ubuntu:16.04
+
+%help
+    This container runs RStudio.
+
+%labels
+    Maintainer Matthew Flister
+    Version v18.04
+    RStudio_Version 1.1.442
+    R_Version 3.4.4
+
+%apprun rserver
+    exec rserver "${@}"
+
+%runscript
+    exec rserver "${@}"
+
+%environment
+    export QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
+    export PATH=/usr/lib/rstudio-server/bin:${PATH}
+
+%setup
+    install -Dv \
+    pam_help.sh \
+    ${SINGULARITY_ROOTFS}/usr/lib/rstudio-server/bin/pam_help
+
+%post
+    mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts
+    apt-get update
+    apt-get -y install \
+        software-properties-common \
+        apt-transport-https \
+        gstreamer1.0-plugins-base \
+        libcdparanoia0 \
+        libgstreamer-plugins-base1.0-0 \
+        libgstreamer1.0-0 \
+        libjpeg62 \
+        libogg0 \
+        libopus0 \
+        liborc-0.4-0 \
+        libtheora0 \
+        libvisual-0.4-0 \
+        libvorbis0a \
+        libvorbisenc2 \
+        libxslt-dev \
+        locales \
+        texlive-fonts-extra
+    echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    echo "LANG=en_US.UTF-8" > /etc/locale.conf
+    locale-gen en_US.UTF-8
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+    add-apt-repository 'deb https://cran.mtu.edu/bin/linux/ubuntu xenial/'
+    apt-get update
+    apt-get -y install r-base r-base-dev wget gdebi-core
+    wget https://download2.rstudio.org/rstudio-server-1.1.442-amd64.deb
+    gdebi --n rstudio-server-1.1.442-amd64.deb
+    rm rstudio-server-1.1.442-amd64.deb
+
+    # setup rstudio-server
+
+
+%test
+    rstudio-server verify-installation
+

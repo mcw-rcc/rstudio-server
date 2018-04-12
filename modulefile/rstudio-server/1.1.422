@@ -1,0 +1,18 @@
+#%Module -*- tcl -*-
+##
+## modulefile
+##
+proc ModulesHelp { } {
+  puts stderr "\tAdds [module-info name] to your environment.\n"
+}
+
+module-whatis "adds RStudio-Server to your environment variables"
+
+set           rstudio_server_vers   1.1.422
+set           img_root              /cm/shared/apps/singularity/images
+set-alias	  rstudio-server        "singularity exec ${img_root}/rstudio-server-${rstudio_server_vers}.simg rserver --www-port ${PORT} --auth-none 0 --auth-none 0 --auth-pam-helper pam_help"
+
+if ![ is-loaded 'singularity/2.4.2' ] {
+  module load singularity/2.4.2
+}
+
