@@ -19,7 +19,7 @@ echo -e "
 
    and point your web browser to http://localhost:8787
 
-2. log in to RStudio Server using the following credentials:
+2. Log in to RStudio Server using the following credentials:
 
    user: ${USER}
    password: ${RSTUDIO_PASSWORD}
@@ -30,5 +30,4 @@ module load rstudio-server/1.1.422
 
 # start server
 rstudio-server
-singularity exec /path/to/singularity-rstudio.simg \
-    rserver --www-port ${PORT} --auth-none 0 --auth-pam-helper rstudio_auth
+
