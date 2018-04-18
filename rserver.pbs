@@ -15,7 +15,7 @@ export RSTUDIO_PASSWORD=$(openssl rand -base64 15)
 echo -e "
 1. SSH tunnel from your workstation using the following command:
 
-   ssh -N -L 8787:${HOSTNAME}:${PORT} ${USER}@$PBS_O_HOST
+   ssh -L 8787:${HOSTNAME}:${PORT} ${USER}@$PBS_O_HOST
 
    and point your web browser to http://localhost:8787
 
@@ -26,7 +26,7 @@ echo -e "
 "
 
 # load modules
-module load rstudio-server/1.1.442
+module load RStudio/1.1.442
 
 # start server
 rstudio-server
