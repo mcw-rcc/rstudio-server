@@ -19,6 +19,7 @@ From: ubuntu:16.04
 %environment
     export QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
     export PATH=/usr/lib/rstudio-server/bin:${PATH}
+    export R_LIBS=/extR/library
 
 %setup
     install -Dv \
@@ -26,7 +27,7 @@ From: ubuntu:16.04
     ${SINGULARITY_ROOTFS}/usr/lib/rstudio-server/bin/pam_help
 
 %post
-    mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts
+    mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts /extR/library1 /extR/library2
     apt-get update
     apt-get -y install \
         software-properties-common \
