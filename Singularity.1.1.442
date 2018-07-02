@@ -1,14 +1,14 @@
-BootStrap: docker
-From: ubuntu:16.04
+BootStrap: shub
+From: maflister/r-base:3.5.0
 
 %help
     This container runs RStudio-Server.
 
 %labels
     Maintainer Matthew Flister
-    Version v18.04
+    Version 07.02.18
     RStudio_Version 1.1.442
-    R_Version 3.4.4
+    R_Version 3.5.0
 
 %apprun rserver
     exec rserver "${@}"
@@ -46,19 +46,13 @@ From: ubuntu:16.04
         libvorbisenc2 \
         libxslt-dev \
         locales \
-        texlive-fonts-extra
-    echo "LC_ALL=en_US.UTF-8" >> /etc/environment
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-    echo "LANG=en_US.UTF-8" > /etc/locale.conf
-    locale-gen en_US.UTF-8
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-    add-apt-repository 'deb https://cran.mtu.edu/bin/linux/ubuntu xenial/'
-    apt-get update
-    apt-get -y install r-base r-base-dev wget gdebi-core
+        texlive-fonts-extra \
+        wget \
+        gdebi-core
+    apt-get clean
     wget https://download2.rstudio.org/rstudio-server-1.1.442-amd64.deb
     gdebi --n rstudio-server-1.1.442-amd64.deb
     rm rstudio-server-1.1.442-amd64.deb
-
 %test
     rstudio-server verify-installation
 
