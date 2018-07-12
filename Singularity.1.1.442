@@ -1,5 +1,5 @@
 BootStrap: shub
-From: maflister/r-base:3.5.0
+From: mcw-rcc/r-base:3.5.0
 
 %help
     This container runs RStudio-Server.
