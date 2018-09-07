@@ -15,6 +15,7 @@ Example job script:
 # tunnel info
 PORT=$(shuf -i8000-9999 -n1)
 SUBMIT_HOST=$(echo ${PBS_O_HOST%%.*}.rcc.mcw.edu)
+
 # rserver password
 export RSTUDIO_PASSWORD=$(openssl rand -base64 15)
 
