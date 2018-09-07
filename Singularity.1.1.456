@@ -6,8 +6,8 @@ From: mcw-rcc/r-base:3.5.0
 
 %labels
     Maintainer Matthew Flister
-    Version 07.02.18
-    RStudio_Version 1.1.442
+    Version 09.07.18
+    RStudio_Version 1.1.456
     R_Version 3.5.0
 
 %apprun rserver
@@ -50,9 +50,9 @@ From: mcw-rcc/r-base:3.5.0
         wget \
         gdebi-core
     apt-get clean
-    wget https://download2.rstudio.org/rstudio-server-1.1.442-amd64.deb
-    gdebi --n rstudio-server-1.1.442-amd64.deb
-    rm rstudio-server-1.1.442-amd64.deb
+    wget https://download2.rstudio.org/rstudio-server-1.1.456-amd64.deb
+    gdebi --n rstudio-server-1.1.456-amd64.deb
+    rm rstudio-server-1.1.456-amd64.deb
 %test
     rstudio-server verify-installation
 
