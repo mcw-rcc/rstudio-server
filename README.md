@@ -32,7 +32,7 @@ echo -e "
 "
 
 # load modules
-module load RStudio/1.1.456
+module load rstudio-server/1.1.456
 
 #start server
 rstudio-server
