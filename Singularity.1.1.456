@@ -19,7 +19,6 @@ From: mcw-rcc/r-base:3.5.0
 %environment
     export QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
     export PATH=/usr/lib/rstudio-server/bin:${PATH}
-    export R_LIBS=/extR/library1:/extR/library2
 
 %setup
     install -Dv \
@@ -30,7 +29,6 @@ From: mcw-rcc/r-base:3.5.0
     ${SINGULARITY_ROOTFS}/etc/rstudio/rserver.conf
 
 %post
-    mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts /extR/library1 /extR/library2
     apt-get update
     apt-get -y install \
         software-properties-common \
