@@ -14,7 +14,7 @@ Example job script:
 
 # tunnel info
 PORT=$(shuf -i8000-9999 -n1)
-
+SUBMIT_HOST=$(echo ${PBS_O_HOST%%.*}.rcc.mcw.edu)
 # rserver password
 export RSTUDIO_PASSWORD=$(openssl rand -base64 15)
 
@@ -22,7 +22,7 @@ export RSTUDIO_PASSWORD=$(openssl rand -base64 15)
 echo -e "
 1. SSH tunnel from your workstation using the following command:
    
-   ssh -L 8787:${HOSTNAME}:${PORT} ${USER}@$PBS_O_HOST
+   ssh -L 8787:${HOSTNAME}:${PORT} ${USER}@${SUBMIT_HOST}
    
    and point your web browser to http://localhost:8787.
 
