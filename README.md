@@ -6,7 +6,7 @@ Singularity container running RStudio Server.
 Example job script:
 ```
 #!/bin/bash
-#PBS -N jnb
+#PBS -N rserver
 #PBS -l nodes=1:ppn=1
 #PBS -l mem=5gb
 #PBS -l walltime=1:00:00
