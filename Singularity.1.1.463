@@ -29,6 +29,7 @@ From: mcw-rcc/r-base:3.5.0
     ${SINGULARITY_ROOTFS}/etc/rstudio/rserver.conf
 
 %post
+    mkdir -p /cm/shared/apps
     apt-get update
     apt-get -y install \
         software-properties-common \
