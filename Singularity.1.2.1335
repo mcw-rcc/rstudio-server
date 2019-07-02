@@ -51,7 +51,7 @@ From: mcw-rcc/r-base:3.5.0
         gdebi-core
     apt-get clean
     wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.1335-amd64.deb
-    gdebi --n rstudio-server-1.2.1335-amd64.deb
+    gdebi -n rstudio-server-1.2.1335-amd64.deb
     rm rstudio-server-1.2.1335-amd64.deb
     echo "R_LIBS=/extR/library1:/extR/library2" > /usr/local/lib/R/etc/Renviron.site
 %test
