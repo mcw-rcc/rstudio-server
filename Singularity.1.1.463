@@ -6,9 +6,6 @@ From: mcw-rcc/r-base:3.5.0
 
 %labels
     Maintainer Matthew Flister
-    Version 11.09.18
-    RStudio_Version 1.1.463
-    R_Version 3.5.0
 
 %apprun rserver
     exec rserver "${@}"
@@ -50,8 +47,15 @@ From: mcw-rcc/r-base:3.5.0
         texlive-fonts-extra \
         wget \
         gdebi-core \
-        libhdf5-dev
+        libhdf5-dev \
+        libgmp-dev
     apt-get clean
+
+    echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    echo "LANG=en_US.UTF-8" > /etc/locale.conf
+    locale-gen en_US.UTF-8
+
     wget https://download2.rstudio.org/rstudio-server-1.1.463-amd64.deb
     gdebi --n rstudio-server-1.1.463-amd64.deb
     rm rstudio-server-1.1.463-amd64.deb
