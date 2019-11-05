@@ -14,7 +14,8 @@ From: mcw-rcc/r-base:3.5.0
     exec rserver "${@}"
 
 %environment 
-    export PATH=/usr/lib/rstudio-server/bin:${PATH}
+    export PATH=/usr/lib/rstudio-server/bin:/opt/gcc/5.2.0/bin:${PATH}
+    export LD_LIBRARY_PATH=/opt/gcc/5.2.0/lib:/opt/gcc/5.2.0/lib64:${LD_LIBRARY_PATH}
 
 %setup
     install -Dv \
@@ -25,6 +26,7 @@ From: mcw-rcc/r-base:3.5.0
     ${SINGULARITY_ROOTFS}/etc/rstudio/rserver.conf
 
 %post
+    mkdir -p /opt/gcc/5.2.0
     # install rstudio
     wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5019-x86_64.rpm
     yum -y install rstudio-server-rhel-1.2.5019-x86_64.rpm
