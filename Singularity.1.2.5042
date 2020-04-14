@@ -13,10 +13,6 @@ From: mcw-rcc/r-base:3.5.0
 %runscript
     exec rserver "${@}"
 
-%environment
-    export QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
-    export PATH=/usr/lib/rstudio-server/bin:${PATH}
-
 %setup
     install -Dv \
     pam_help.sh \
@@ -38,6 +34,4 @@ From: mcw-rcc/r-base:3.5.0
     rm -rf rstudio-server-rhel-1.2.5042-x86_64.rpm
     echo "R_LIBS=/extR/library1:/extR/library2" > /usr/local/lib/R/etc/Renviron.site
     yum clean all
-%test
-    rstudio-server verify-installation
 
