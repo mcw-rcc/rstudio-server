@@ -1,0 +1,18 @@
+#%Module -*- tcl -*-
+##
+## modulefile
+##
+proc ModulesHelp { } {
+  puts stderr "\tAdds [module-info name] to your environment.\n"
+}
+
+module-whatis "adds [module-info name] to your environment variables"
+
+set           rstudio_server_vers   1.1.456
+set           img_root              /rcc/stor1/containers
+set-alias	  rstudio-server        "singularity exec -B /cm/shared/apps/R/3.5.0/lib64/R/library:/extR/library1,/rcc/stor1/refdata/R/library:/extR/library2 ${img_root}/ubuntu_rstudio-server-${rstudio_server_vers}_latest.simg rserver --www-port ${PORT} --auth-none 0 --auth-pam-helper pam_help"
+
+if ![ is-loaded 'singularity' ] {
+  module load singularity
+}
+
