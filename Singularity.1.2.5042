@@ -23,11 +23,11 @@ From: mcw-rcc/r-base:3.5.0
 
 %post
     yum install -y environment-modules
-    mkdir -p /mod/l /mod/s /mod/r
+    mkdir -p /cm/local /cm/shared
     cat <<EOF >> /usr/share/Modules/init/.modulespath
-    /mod/l
-    /mod/s
-    /mod/r
+    /cm/local/modulefiles
+    /cm/shared/modulefiles
+    /cm/shared/rcc/modulefiles
     EOF
     wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5042-x86_64.rpm
     yum install -y rstudio-server-rhel-1.2.5042-x86_64.rpm
