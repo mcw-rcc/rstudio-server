@@ -2,7 +2,7 @@ BootStrap: shub
 From: mcw-rcc/r-base:3.5.0
 
 %help
-    This container runs RStudio-Server.
+    This container runs RStudio Server.
 
 %labels
     Maintainer Matthew Flister
@@ -13,6 +13,9 @@ From: mcw-rcc/r-base:3.5.0
 %runscript
     exec rserver "${@}"
 
+%environment
+    export PATH=/usr/lib/rstudio-server/bin:${PATH}
+
 %setup
     install -Dv \
     pam_help.sh \
@@ -22,6 +25,7 @@ From: mcw-rcc/r-base:3.5.0
     ${SINGULARITY_ROOTFS}/etc/rstudio/rserver.conf
 
 %post
+    # create dirs and modulefile config
     yum install -y environment-modules
     mkdir -p /cm/local /cm/shared
     cat <<EOF >> /usr/share/Modules/init/.modulespath
@@ -29,9 +33,11 @@ From: mcw-rcc/r-base:3.5.0
     /cm/shared/modulefiles
     /cm/shared/rcc/modulefiles
     EOF
+
+    # install rstudio
     wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5042-x86_64.rpm
     yum install -y rstudio-server-rhel-1.2.5042-x86_64.rpm
     rm -rf rstudio-server-rhel-1.2.5042-x86_64.rpm
-    echo "R_LIBS=/extR/library1:/extR/library2" > /usr/local/lib/R/etc/Renviron.site
     yum clean all
-
+    rm -rf /var/cache/yum/*
+    echo "R_LIBS=/extR/library1:/extR/library2" > /opt/R/3.5.0/lib64/R/etc/Renviron.site
